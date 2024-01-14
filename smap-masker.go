@@ -25,6 +25,7 @@ func masker(s string) string {
 			linkFounnd = true
 			res = append(res, []byte(link)...)
 			i += linkLen - 1
+			continue
 		}
 
 		res = append(res, s[i])
