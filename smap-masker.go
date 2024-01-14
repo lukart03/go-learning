@@ -1,7 +1,5 @@
 package main
 
-import "testing"
-
 func masker(s string) string {
 	var res []byte
 	link := "http://"
@@ -32,23 +30,4 @@ func masker(s string) string {
 	}
 
 	return string(res)
-}
-
-func testMasker(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"Here's my spammy page: http://hehefouls.netHAHAHA see you.", "Here's my spammy page: http://******************* see you."},
-		{"http://yandex.com/", "http://**********"},
-		{"http://yandex.com/maps , http://google.com", "http://*************** , http://***********"},
-		{"Some text", "Some text"},
-	}
-
-	for _, test := range tests {
-		result := masker(test.input)
-		if result != test.expected {
-			t.Errorf("Expected %s but got %s for input '%s'", test.expected, result, test.input)
-		}
-	}
 }
