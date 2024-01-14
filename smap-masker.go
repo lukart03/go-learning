@@ -1,8 +1,9 @@
 package main
 
+const link = "http://"
+
 func masker(s string) string {
 	var res []byte
-	link := "http://"
 	linkLen := len(link)
 	linkFounnd := false
 
@@ -16,13 +17,14 @@ func masker(s string) string {
 			linkFounnd = false
 			continue
 		}
-		if len(s[i:]) >= linkLen {
-			if s[i:i+linkLen] == link {
-				linkFounnd = true
-				res = append(res, []byte(link)...)
-				i += linkLen - 1
-				continue
-			}
+		if len(s[i:]) < linkLen {
+			res = append(res, s[i:]...)
+			break
+		}
+		if s[i:i+linkLen] == link {
+			linkFounnd = true
+			res = append(res, []byte(link)...)
+			i += linkLen - 1
 		}
 
 		res = append(res, s[i])
